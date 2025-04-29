@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض شرائح RTL أفقي فقط</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .reveal,
+        .reveal .slides {
+            direction: rtl;
+            text-align: right;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+
+        body {
+            /* font-family: 'Montserrat', sans-serif; */
+            font-family: "Noto Kufi Arabic", sans-serif;
+            /* background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 720px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .top-bar {
+            height: 15px;
+            background: linear-gradient(90deg, #0a3d62 0%, #0a3d62 100%);
+        }
+
+        .bottom-bar {
+            height: 15px;
+            background: linear-gradient(90deg, #0a3d62 0%, #0a3d62 100%);
+        }
+
+        .logo-placeholder {
+            width: 180px;
+            height: 70px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #0a3d62;
+            font-weight: bold;
+            border: 2px solid #e9ecef;
+        }
+
+        .title {
+            color: #0a3d62;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #0a3d62;
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            color: #0a3d62;
+            font-weight: 600;
+        }
+
+        /* page 1 */
+        .ownership-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .ownership-item {
+            text-align: center;
+        }
+
+        .ownership-percent {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a3d62;
+            margin-bottom: 5px;
+        }
+
+        .ownership-label {
+            font-size: 1rem;
+            color: #555;
+            padding: 10px;
+        }
+
+
+
+        /* page 2 */
+        .metric-card {
+            background: #f8f9fa;
+            border-left: 5px solid #0a3d62;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-title {
+            color: #555;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            color: #0a3d62;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .metric-subtitle {
+            color: #777;
+            font-size: 0.7rem;
+            margin-bottom: 4px;
+        }
+
+        .metric-icon {
+            color: #0a3d62;
+            background-color: rgba(10, 147, 150, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        .chart-container.financial-container {
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .positive-change {
+            color: #2b9348;
+        }
+
+        .negative-change {
+            color: #d62828;
+        }
+
+
+        /* page 3 */
+
+        .stock-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .stock-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .stock-metric {
+            color: #0a3d62;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stock-label {
+            color: #555;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .chart-container.owner-container {
+            height: 280px;
+            margin-top: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .chart-container.stockPrice-container {
+            height: 280px;
+            margin-top: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .badge {
+            background-color: #0a3d62;
+            color: white;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .info-icon {
+            color: #0a3d62;
+            margin-left: 8px;
+            font-size: 1rem;
+        }
+
+        /* page 4 */
+
+        .dividend-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .dividend-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .dividend-value {
+            color: #0a3d62;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .dividend-label {
+            color: #555;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .chart-container.dividend-cont {
+            height: 280px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .payment-card {
+            background-color: white;
+            border-left: 4px solid #0a3d62;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 16px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box {
+            background-color: rgba(10, 147, 150, 0.1);
+            border: 1px solid rgba(10, 147, 150, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            display: none;
+        }
+
+        .info-title {
+            color: #0a3d62;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+
+        /* page 5*/
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: auto;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-header {
+            background: linear-gradient(90deg, #0a3d62 0%, #0a3d62 100%);
+            color: white;
+            padding: 10px 10px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .feature-card-body {
+            padding: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .feature-icon {
+            color: #0a3d62;
+            background-color: rgba(10, 147, 150, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .award-badge {
+            background-color: rgba(10, 147, 150, 0.1);
+            border: 1px solid rgba(10, 147, 150, 0.3);
+            border-radius: 20px;
+            padding: 8px 16px;
+            margin: 4px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #0a3d62;
+        }
+
+        .outlook-value {
+            color: #0a3d62;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .chart-container.gdp-container {
+            height: 200px;
+            margin: 15px 0;
+        }
+
+
+
+        /* tab */
+        .nav-tabs .nav-link.active {
+            background: #0a3d62;
+            color: #fff;
+
+        }
+
+        .nav-tabs .nav-link {
+            border-color: #dee2e6;
+            color: #0a3d62;
+            font-size: 14px;
+        }
+
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        .content-tab-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav.nav-tabs {
+            direction: rtl;
+            border-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <div class="slide">
+                    <div class="top-bar"></div>
+                    <div class="p-8 flex flex-col items-center">
+                        <div class="logo-placeholder mb-8">SABIC LOGO</div>
+                        <h1 class="title text-center">SABIC Stock Financial Summary</h1>
+                        <h2 class="subtitle text-center">April 2025</h2>
+
+                        <p class="description text-center">
+                            Saudi Basic Industries Corporation (<span class="highlight">SABIC</span>) is one of the
+                            world's
+                            largest
+                            petrochemicals manufacturers,
+                            headquartered in Riyadh, Saudi Arabia. The company is a global leader in diversified
+                            chemicals
+                            with
+                            operations in over 50 countries
+                            and a workforce of more than 31,000 employees worldwide.
+                        </p>
+
+                        <div class="ownership-box">
+                            <div class="ownership-item">
+                                <div class="ownership-percent">70%</div>
+                                <div class="ownership-label">Owned by Saudi Aramco</div>
+                            </div>
+                            <div class="border-l border-gray-300 h-20"></div>
+                            <div class="ownership-item">
+                                <div class="ownership-percent">30%</div>
+                                <div class="ownership-label">Publicly traded on Saudi Stock Exchange (Tadawul)</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 flex items-center justify-center">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-3xl text-green-600 ml-3"></i>
+                                <span class="text-xl text-gray-700">Stock Symbol: 2010.SE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-bar absolute bottom-0 w-full"></div>
+                </div>
+
+            </section>
+
+            <section>
+
+                <div class="slide">
+                    <div class="top-bar"></div>
+                    <div class="p-6">
+                        <h1 class="title text-center">2024 Financial Performance</h1>
+
+                        <div class="grid grid-cols-3 gap-6 mb-8">
+                            <div class="metric-card flex items-start">
+                                <div class="ml-4">
+                                    <i class="fas fa-money-bill-wave metric-icon"></i>
+                                </div>
+                                <div>
+                                    <h3 class="metric-title">Revenue</h3>
+                                    <p class="metric-value">SAR 139.98 billion</p>
+                                    <p class="metric-subtitle">US$ 37.33 billion</p>
+                                    <p class="metric-subtitle negative-change"><i class="fas fa-arrow-down"></i> 1% vs
+                                        2023
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card flex items-start">
+                                <div class="ml-4">
+                                    <i class="fas fa-chart-line metric-icon"></i>
+                                </div>
+                                <div>
+                                    <h3 class="metric-title">EBITDA</h3>
+                                    <p class="metric-value">SAR 19.47 billion</p>
+                                    <p class="metric-subtitle">US$ 5.19 billion</p>
+                                    <p class="metric-subtitle positive-change"><i class="fas fa-arrow-up"></i> 2% vs
+                                        2023
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card flex items-start">
+                                <div class="ml-4">
+                                    <i class="fas fa-business-time metric-icon"></i>
+                                </div>
+                                <div>
+                                    <h3 class="metric-title">Income from Operations (EBIT)</h3>
+                                    <p class="metric-value">SAR 5.74 billion</p>
+                                    <p class="metric-subtitle">US$ 1.53 billion</p>
+                                    <p class="metric-subtitle positive-change"><i class="fas fa-arrow-up"></i> 54% vs
+                                        2023
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-6">
+                            <div class="metric-card flex items-start">
+                                <div class="ml-4">
+                                    <i class="fas fa-coins metric-icon"></i>
+                                </div>
+                                <div>
+                                    <h3 class="metric-title">Net Income</h3>
+                                    <p class="metric-value">SAR 1.54 billion</p>
+                                    <p class="metric-subtitle">US$ 0.41 billion</p>
+                                    <p class="metric-subtitle positive-change">vs Net loss in 2023</p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card flex items-start">
+                                <div class="ml-4">
+                                    <i class="fas fa-wallet metric-icon"></i>
+                                </div>
+                                <div>
+                                    <h3 class="metric-title">Net Cash Position</h3>
+                                    <p class="metric-value">SAR 3.01 billion</p>
+                                    <p class="metric-subtitle">US$ 0.80 billion</p>
+                                    <p class="metric-subtitle">As of December 31, 2024</p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card flex items-start">
+                                <div class="ml-4">
+                                    <i class="fas fa-boxes metric-icon"></i>
+                                </div>
+                                <div>
+                                    <h3 class="metric-title">Sales Volume</h3>
+                                    <p class="metric-value">45.11 MMT</p>
+                                    <p class="metric-subtitle">Million Metric Tons</p>
+                                    <p class="metric-subtitle negative-change"><i class="fas fa-arrow-down"></i> vs
+                                        45.90
+                                        MMT in 2023</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container financial-container mt-8">
+                            <canvas id="financialChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bottom-bar absolute bottom-0 w-full"></div>
+                </div>
+
+            </section>
+
+            <section>
+                <div class="slide">
+                    <div class="top-bar"></div>
+                    <div class="p-6">
+                        <h1 class="title text-center">Stock Information & Market Position</h1>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <div class="flex justify-between mb-6">
+                                    <div class="stock-card flex-1 ml-3">
+                                        <div class="stock-metric">2010.SE</div>
+                                        <div class="stock-label">Stock Symbol on Tadawul</div>
+                                    </div>
+                                    <div class="stock-card flex-1">
+                                        <div class="stock-metric">SAR 62.00</div>
+                                        <div class="stock-label">Current Stock Price</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between mb-6">
+                                    <div class="stock-card flex-1 ml-3">
+                                        <div class="stock-metric">47.0</div>
+                                        <div class="stock-label">P/E Ratio (TTM)</div>
+                                    </div>
+                                    <div class="stock-card flex-1">
+                                        <div class="stock-metric">SAR 186B</div>
+                                        <div class="stock-label">Market Capitalization</div>
+                                        <div class="text-sm text-gray-500">US$ ~49.6 billion</div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-card p-6 mb-6">
+                                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Company Highlights</h3>
+                                    <div class="info-row">
+                                        <i class="fas fa-chart-pie info-icon"></i>
+                                        <span>2.2% weighting in Tadawul All Share Index (TASI)</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <i class="fas fa-award info-icon"></i>
+                                        <span>Credit rating: <span class="badge">AA3 by Moody's</span> (recently
+                                            upgraded)</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <i class="fas fa-star info-icon"></i>
+                                        <span>Brand value: US$ 4.93 billion</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <i class="fas fa-trophy info-icon"></i>
+                                        <span>Second-most valuable global chemical brand</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="chart-container owner-container mb-4">
+                                    <canvas id="ownershipChart"></canvas>
+                                </div>
+
+                                <div class="chart-container stockPrice-container">
+                                    <canvas id="stockPriceChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-bar absolute bottom-0 w-full"></div>
+                </div>
+            </section>
+
+            <section>
+
+
+                <div class="slide">
+                    <div class="top-bar"></div>
+                    <div class="p-6">
+                        <h1 class="title text-center">Dividend Information</h1>
+
+                        <div class="grid grid-cols-4 gap-6 mb-6">
+                            <div class="dividend-card">
+                                <div class="dividend-value">SAR 3.4</div>
+                                <div class="dividend-label">2024 Dividends per Share</div>
+                            </div>
+
+                            <div class="dividend-card">
+                                <div class="dividend-value">SAR 10.2B</div>
+                                <div class="dividend-label">Total Dividends Payout</div>
+                            </div>
+
+                            <div class="dividend-card">
+                                <div class="dividend-value">3B</div>
+                                <div class="dividend-label">Number of Shares</div>
+                            </div>
+
+                            <div class="dividend-card">
+                                <div class="dividend-value">>100%</div>
+                                <div class="dividend-label">Dividend Payout Ratio</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-7 gap-6">
+                            <div class="col-span-3">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">Recent Dividend Payments</h3>
+
+                                <div class="payment-card flex items-center justify-between">
+                                    <div>
+                                        <span class="font-medium">H2 2024</span>
+                                        <span class="text-sm text-gray-500 ml-2">Distribution Date: Mar 4, 2025</span>
+                                    </div>
+                                    <div class="text-lg font-bold text-green-600">SAR 1.7 per share</div>
+                                </div>
+
+                                <div class="payment-card flex items-center justify-between">
+                                    <div>
+                                        <span class="font-medium">H1 2024</span>
+                                        <span class="text-sm text-gray-500 ml-2">Distribution Date: Sep 24, 2024</span>
+                                    </div>
+                                    <div class="text-lg font-bold text-green-600">SAR 1.7 per share</div>
+                                </div>
+
+                                <div class="payment-card flex items-center justify-between">
+                                    <div>
+                                        <span class="font-medium">H2 2023</span>
+                                        <span class="text-sm text-gray-500 ml-2">Distribution Date: Mar 4, 2024</span>
+                                    </div>
+                                    <div class="text-lg font-bold text-green-600">SAR 1.6 per share</div>
+                                </div>
+
+                                <div class="payment-card flex items-center justify-between">
+                                    <div>
+                                        <span class="font-medium">H1 2023</span>
+                                        <span class="text-sm text-gray-500 ml-2">Distribution Date: Oct 2, 2023</span>
+                                    </div>
+                                    <div class="text-lg font-bold text-green-600">SAR 1.8 per share</div>
+                                </div>
+
+                                <div class="info-box mt-4">
+                                    <div class="info-title">
+                                        <i class="fas fa-info-circle mr-2"></i> Dividend Distribution Mechanism
+                                    </div>
+                                    <ul class="text-sm text-gray-700 leading-relaxed">
+                                        <li class="mb-1">• Interim dividends for H1 announced after Q2 financial results
+                                            approval</li>
+                                        <li class="mb-1">• H2 dividends announced after annual financial results
+                                            approval</li>
+                                        <li class="mb-1">• Reduced time between announcement and distribution to ~1
+                                            month</li>
+                                        <li>• SABIC aims to distribute stable and increasing dividends over the long
+                                            term</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-span-4">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">Dividend Trends (2020-2024)</h3>
+                                <div class="chart-container dividend-cont">
+                                    <canvas id="dividendChart"></canvas>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 mt-4">
+                                    <div class="info-box">
+                                        <div class="info-title">
+                                            <i class="fas fa-chart-line mr-2"></i> Dividend Stability
+                                        </div>
+                                        <p class="text-sm text-gray-700">
+                                            Despite market challenges, SABIC maintained consistent dividend payments,
+                                            demonstrating commitment to shareholder returns even during difficult market
+                                            conditions.
+                                        </p>
+                                    </div>
+                                    <div class="info-box">
+                                        <div class="info-title">
+                                            <i class="fas fa-calendar-alt mr-2"></i> Payment Schedule
+                                        </div>
+                                        <p class="text-sm text-gray-700">
+                                            Dividends are distributed biannually through direct credit to shareholders'
+                                            accounts. Unclaimed dividends can be recovered by contacting SABIC Investor
+                                            Relations.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-bar absolute bottom-0 w-full"></div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            rtl: true,
+            controls: true,
+            progress: true,
+            slideNumber: true
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- page 2 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('financialChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Revenue', 'EBITDA', 'EBIT', 'Net Income', 'Net Cash'],
+                    datasets: [{
+                        label: '2023 (SAR billion)',
+                        backgroundColor: 'rgba(10, 147, 150, 0.6)',
+                        borderColor: 'rgba(10, 147, 150, 1)',
+                        borderWidth: 1,
+                        data: [141.54, 19.02, 3.72, -2.77, 8.76]
+                    }, {
+                        label: '2024 (SAR billion)',
+                        backgroundColor: 'rgba(0, 95, 115, 0.6)',
+                        borderColor: 'rgba(0, 95, 115, 1)',
+                        borderWidth: 1,
+                        data: [139.98, 19.47, 5.74, 1.54, 3.01]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Year-over-Year Financial Comparison',
+                            color: '#005f73',
+                            font: {
+                                size: 16,
+                                family: 'Montserrat',
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'SAR Billion'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- page 3 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ownership Chart
+            var ownershipCtx = document.getElementById('ownershipChart').getContext('2d');
+            var ownershipChart = new Chart(ownershipCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Saudi Aramco', 'Public Shareholders'],
+                    datasets: [{
+                        data: [70, 30],
+                        backgroundColor: [
+                            'rgba(0, 95, 115, 0.8)',
+                            'rgba(10, 147, 150, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 95, 115, 1)',
+                            'rgba(10, 147, 150, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'SABIC Ownership Structure',
+                            color: '#005f73',
+                            font: {
+                                size: 16,
+                                family: 'Montserrat',
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Stock Price Chart
+            var priceCtx = document.getElementById('stockPriceChart').getContext('2d');
+            var priceChart = new Chart(priceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+                    datasets: [{
+                        label: 'Stock Price (SAR)',
+                        data: [58, 59.5, 57, 58.2, 60, 61.5, 59.8, 60.5, 61, 58.5, 57, 59, 60.5, 61, 61.5, 62],
+                        backgroundColor: 'rgba(10, 147, 150, 0.1)',
+                        borderColor: 'rgba(10, 147, 150, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        pointBackgroundColor: 'rgba(0, 95, 115, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'SABIC Stock Price Trend (2024-2025)',
+                            color: '#005f73',
+                            font: {
+                                size: 16,
+                                family: 'Montserrat',
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Price in SAR'
+                            },
+                            min: 55,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- page 4 -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dividendCtx = document.getElementById('dividendChart').getContext('2d');
+            var dividendChart = new Chart(dividendCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2020 H1', '2020 H2', '2021 H1', '2021 H2', '2022 H1', '2022 H2', '2023 H1', '2023 H2', '2024 H1', '2024 H2'],
+                    datasets: [{
+                        label: 'Dividend per Share (SAR)',
+                        data: [1.5, 1.5, 1.75, 2.25, 2.25, 2.0, 1.8, 1.6, 1.7, 1.7],
+                        backgroundColor: [
+                            'rgba(10, 147, 150, 0.7)', 'rgba(10, 147, 150, 0.7)',
+                            'rgba(0, 95, 115, 0.7)', 'rgba(0, 95, 115, 0.7)',
+                            'rgba(10, 147, 150, 0.7)', 'rgba(10, 147, 150, 0.7)',
+                            'rgba(0, 95, 115, 0.7)', 'rgba(0, 95, 115, 0.7)',
+                            'rgba(10, 147, 150, 0.7)', 'rgba(10, 147, 150, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(10, 147, 150, 1)', 'rgba(10, 147, 150, 1)',
+                            'rgba(0, 95, 115, 1)', 'rgba(0, 95, 115, 1)',
+                            'rgba(10, 147, 150, 1)', 'rgba(10, 147, 150, 1)',
+                            'rgba(0, 95, 115, 1)', 'rgba(0, 95, 115, 1)',
+                            'rgba(10, 147, 150, 1)', 'rgba(10, 147, 150, 1)'
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'Annual Total',
+                        type: 'line',
+                        data: [3.0, 3.0, 4.0, 4.0, 4.25, 4.25, 3.4, 3.4, 3.4, 3.4],
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgb(255, 159, 64)',
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointBackgroundColor: 'rgb(255, 159, 64)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                footer: function (tooltipItems) {
+                                    return 'Distribution Date: Q1/Q3 following period end';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'SAR per Share'
+                            },
+                            ticks: {
+                                stepSize: 0.5
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- page 5 -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var gdpCtx = document.getElementById('gdpChart').getContext('2d');
+            var gdpChart = new Chart(gdpCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024', '2025 (Projected)'],
+                    datasets: [{
+                        label: 'Global GDP Growth %',
+                        data: [-3.1, 6.1, 3.5, 3.0, 2.8, 2.5],
+                        backgroundColor: 'rgba(10, 147, 150, 0.1)',
+                        borderColor: 'rgba(10, 147, 150, 1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Growth %'
+                            },
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
